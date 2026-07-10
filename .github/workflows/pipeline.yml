@@ -40,8 +40,6 @@ jobs:
           python -m pip install semgrep
           semgrep --config p/owasp-top-ten --config p/secrets --config p/sql-injection src/
 
-
-      # ✅ PASSO 5: SCA com Grype
       - name: 📦 SCA - Grype
         run: |
           set -e
