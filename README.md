@@ -22,8 +22,16 @@ A pipeline está **incompleta**. Os steps de segurança precisam ser implementad
 - [ ] Deploy com **GitHub Pages**
 
 ## Como a pipeline funciona
-> **Substitua este bloco pela sua explicação após implementar a pipeline.**
-> Descreva cada step, o que ele faz e por que ele é importante para a segurança.
+A pipeline executa uma sequência de verificações de segurança antes de publicar no GitHub Pages.
+
+- **Checkout do Código**: baixa todo o histórico do repositório com `fetch-depth: 0`, garantindo que ferramentas como Gitleaks possam analisar commits antigos e rodar corretamente.
+- **Build**: valida a existência dos arquivos em `src/` antes de avançar. Este passo confirma que a aplicação está pronta para as verificações de segurança.
+- **Secrets Scanning com Gitleaks**: procura por segredos expostos em código e histórico de commits. Isso evita o vazamento de senhas, chaves e tokens sensíveis.
+- **SAST com Semgrep**: aplica regras de análise estática para encontrar vulnerabilidades no código, como injeção de SQL, segredos e problemas do OWASP Top Ten.
+- **SCA com Grype**: escaneia dependências e artefatos para identificar vulnerabilidades conhecidas em bibliotecas utilizadas no projeto.
+- **Deploy com GitHub Pages**: somente após todas as verificações de segurança passarem, o site é publicado com segurança.
+
+Cada step bloqueia o fluxo se detectar um problema (fail-fast), garantindo que a aplicação só seja disponibilizada em produção quando estiver segura.
 
 ## URL de Produção
-> Adicione aqui o link do GitHub Pages após o deploy.
+> https://viniciusevans.github.io/projeto-devsecop-desafio/
