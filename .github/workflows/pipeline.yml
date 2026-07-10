@@ -18,13 +18,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      # ✅ PASSO 1: Já está pronto — Baixar o código
       - name: 📥 Checkout do Código
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # ✅ PASSO 2: Já está pronto — Build
       - name: ⚙️ Build
         run: |
           echo "Verificando arquivos..."
