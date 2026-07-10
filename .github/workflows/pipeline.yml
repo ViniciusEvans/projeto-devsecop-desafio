@@ -40,7 +40,14 @@ jobs:
           python -m pip install semgrep
           semgrep --config p/owasp-top-ten --config p/secrets --config p/sql-injection src/
 
-      # ✅ PASSO 6: Já está pronto — Deploy (só roda se tudo passar)
+
+      # ✅ PASSO 5: SCA com Grype
+      - name: 📦 SCA - Grype
+        run: |
+          set -e
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+          grype dir:. --fail-on medium
+
       - name: 🌐 Configurar GitHub Pages
         uses: actions/configure-pages@v4
 
