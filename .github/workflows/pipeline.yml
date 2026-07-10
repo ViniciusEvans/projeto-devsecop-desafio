@@ -33,7 +33,13 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
+      - name: 🔍 SAST - Semgrep
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install semgrep
+          semgrep --config p/owasp-top-ten --config p/secrets --config p/sql-injection src/
+
       # ✅ PASSO 6: Já está pronto — Deploy (só roda se tudo passar)
       - name: 🌐 Configurar GitHub Pages
         uses: actions/configure-pages@v4
