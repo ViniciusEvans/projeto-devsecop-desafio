@@ -40,6 +40,17 @@ jobs:
           python -m pip install semgrep
           semgrep scan --config auto --error src/
 
+      - name: 📡 SCA - Trivy
+        run: |
+          set -e
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+          trivy fs . --format sarif --output trivy-results.sarif --severity HIGH,CRITICAL --exit-code 1
+
+      - name: Upload Trivy results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: trivy-results.sarif
+
       - name: 📦 SCA - Grype
         run: |
           set -e
