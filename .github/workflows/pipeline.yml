@@ -27,6 +27,7 @@ jobs:
         run: |
           echo "Verificando arquivos..."
           ls src/
+          npm install
           echo "Build OK!"
 
       - name: 🔑 Secrets Scanning
