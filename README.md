@@ -35,5 +35,10 @@ A pipeline executa uma sequência de verificações de segurança antes de publi
 
 Cada step bloqueia o fluxo se detectar um problema (fail-fast), garantindo que a aplicação só seja disponibilizada em produção quando estiver segura.
 
+## Vulnerabilidades encontradas e ações tomadas
+- Removido 2 variáveis com secrets expostos
+- Removido dependências com vulnerabilidades
+- Removido input com possibilidade de injection
+
 ## URL de Produção
 > https://viniciusevans.github.io/projeto-devsecop-desafio/
