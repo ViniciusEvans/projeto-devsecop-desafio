@@ -28,7 +28,7 @@ A pipeline executa uma sequência de verificações de segurança antes de publi
 - **Build**: valida a existência dos arquivos em `src/` antes de avançar. Este passo confirma que a aplicação está pronta para as verificações de segurança.
 - **Secrets Scanning com Gitleaks**: procura por segredos expostos em código e histórico de commits. Isso evita o vazamento de senhas, chaves e tokens sensíveis.
 - **SAST com Semgrep**: aplica regras de análise estática para encontrar vulnerabilidades no código, como injeção de SQL, segredos e problemas do OWASP Top Ten.
-- **SCA com Grype**: escaneia dependências e artefatos para identificar vulnerabilidades conhecidas em bibliotecas utilizadas no projeto.
+- **SCA com Grype**: escaneia dependências e artefatos para identificar vulnerabilidades conhecidas em bibliotecas utilizadas no projeto (supply chain).
 - **Deploy com GitHub Pages**: somente após todas as verificações de segurança passarem, o site é publicado com segurança.
 
 Cada step bloqueia o fluxo se detectar um problema (fail-fast), garantindo que a aplicação só seja disponibilizada em produção quando estiver segura.
